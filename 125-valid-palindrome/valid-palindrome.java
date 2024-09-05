@@ -1,25 +1,25 @@
 class Solution {
     public boolean isPalindrome(String s) {
         // lets do it with two pointer-
-        ArrayList<Character> tempList = new ArrayList<>();
-        s = s.toLowerCase();
-        for (int i = 0; i < s.length(); i++) {
-            char tempChar = s.charAt(i);
-            if (checkIfAlphaNumeric(tempChar)) {
-                tempList.add(tempChar);
-            }
-        }
         int startPointer = 0;
-        int endPointer = tempList.size() - 1;
+        int endPointer = s.length() - 1;
         while (startPointer < endPointer) {
-            char startPointerChar = tempList.get(startPointer);
-            char endPointerChar = tempList.get(endPointer);
-
-            if (startPointerChar == endPointerChar) {
+            char startPointerChar = s.charAt(startPointer);
+            char endPointerChar = s.charAt(endPointer);
+            if(!checkIfAlphaNumeric(startPointerChar)){
                 startPointer++;
+            }
+            else if(!checkIfAlphaNumeric(endPointerChar)) {
                 endPointer--;
-            } else {
-                return false;
+            } else if (checkIfAlphaNumeric(startPointerChar) && checkIfAlphaNumeric(endPointerChar)) {
+                startPointerChar = Character.toLowerCase(startPointerChar);
+                endPointerChar = Character.toLowerCase(endPointerChar);
+                if (startPointerChar == endPointerChar) {
+                    startPointer++;
+                    endPointer--;
+                } else {
+                    return false;
+                }
             }
         }
         return true;
