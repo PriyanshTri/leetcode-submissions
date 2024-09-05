@@ -1,5 +1,7 @@
 class Solution {
     public boolean isPalindrome(String s) {
+
+        // learning recursive solution
         ArrayList<Character> tempList = new ArrayList<>();
         s=s.toLowerCase();
         for(int i=0;i<s.length();i++) {
