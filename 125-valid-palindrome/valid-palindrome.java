@@ -1,24 +1,36 @@
 class Solution {
     public boolean isPalindrome(String s) {
-
-        // learning recursive solution
+        // lets do it with two pointer-
         ArrayList<Character> tempList = new ArrayList<>();
-        s=s.toLowerCase();
-        for(int i=0;i<s.length();i++) {
-            char tempChar=s.charAt(i);
-            if((tempChar>='a' && tempChar<='z') ||(tempChar>='0' && tempChar<='9')) {
+        s = s.toLowerCase();
+        for (int i = 0; i < s.length(); i++) {
+            char tempChar = s.charAt(i);
+            if (checkIfAlphaNumeric(tempChar)) {
                 tempList.add(tempChar);
             }
         }
-        System.out.println(tempList);
-        return recursiveCheckPalindrome(0, tempList.size()-1, tempList);
-    }
-    public boolean recursiveCheckPalindrome(int startIndex, int endIndex, ArrayList<Character> lst) {
-        if(startIndex>=endIndex) return true;
-        if(lst.get(startIndex) == lst.get(endIndex)) {
-            System.out.printf("%c %c\n", lst.get(startIndex), lst.get(endIndex));
-            return recursiveCheckPalindrome(startIndex+1, endIndex-1, lst);
+        int startPointer = 0;
+        int endPointer = tempList.size() - 1;
+        while (startPointer < endPointer) {
+            char startPointerChar = tempList.get(startPointer);
+            char endPointerChar = tempList.get(endPointer);
+
+            if (startPointerChar == endPointerChar) {
+                startPointer++;
+                endPointer--;
+            } else {
+                return false;
+            }
         }
-        return false;
+        return true;
+    }
+
+    public boolean checkIfAlphaNumeric(char currentChar) {
+        if ((currentChar >= 'a' && currentChar <= 'z') || (currentChar >= 'A' && currentChar <= 'Z')
+                || currentChar >= '0' && currentChar <= '9') {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
