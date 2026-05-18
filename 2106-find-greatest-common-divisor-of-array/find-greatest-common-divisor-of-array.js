@@ -16,10 +16,10 @@ var findGCD = function(nums) {
     }
     if(min === 1 || max === 1 || min===max)
         return min;
-    for(let i = 1 ; i<min+1;i++) {
+    for(let i = min ; i>0;i--) {
         if(min%i===0 && max%i===0) {
-            gcd = i;
+            return i;
         }
     }
-    return gcd
+    return 1;
 };
