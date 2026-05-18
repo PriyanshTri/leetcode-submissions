@@ -16,10 +16,18 @@ var findGCD = function(nums) {
     }
     if(min === 1 || max === 1 || min===max)
         return min;
-    for(let i = min ; i>0;i--) {
-        if(min%i===0 && max%i===0) {
-            return i;
+     while (min > 0 && max > 0) {
+        if (min > max) {
+            min = min % max;
+        }
+        
+        else {
+            max = max % min;
         }
     }
-    return 1;
+    
+    if (min === 0) {
+        return max;
+    }
+    return min;
 };
